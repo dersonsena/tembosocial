@@ -46,10 +46,6 @@ const cities = [
   {
     name: "Las Vegas",
     Responses: 16
-  },
-  {
-    name: "AA111",
-    Responses: 16
   }
 ];
 
