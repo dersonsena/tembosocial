@@ -36,7 +36,7 @@ foreach ($comments as $comment) {
         $count = 0;
     }
 
-    file_put_contents($file, $comment . PHP_EOL);
+    file_put_contents($file, $comment . PHP_EOL, FILE_APPEND);
 
     $count++;
 }
