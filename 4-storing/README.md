@@ -40,11 +40,12 @@ $connection = PDOConnection::build([
 ]);
 ```
 
-After this, create the Comments table:
+After this, create the `comments` table:
 
 ```sql
 CREATE TABLE `comments` (
-    `comment_id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT, `comment` TEXT DEFAULT NULL,
+    `comment_id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `comment` TEXT DEFAULT NULL,
     `last_modified` TIMESTAMP DEFAULT NULL
 )
 ```
@@ -56,3 +57,7 @@ Finally, start the PHP Built-in server to start the application.
 ```
 php -S localhost:8000 -t public
 ```
+
+Open your favorite browser in the address `http://localhost:8000` and the output should be:
+
+![Screenshot 1](/4-storing/assets/screen-2.png)

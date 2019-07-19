@@ -11,11 +11,19 @@ $connection = PDOConnection::build([
     'password' => '123456'
 ]);
 
+if ($connection) {
+    echo "Connected Successfuly!<br />";
+}
+
 // 1 - Write a function to store a comment from a user into the `comments` table.
-$connection->insert('comments', [
+$insert = $connection->insert('comments', [
     'comment' => 'aaa Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper nibh ex, a gravida nunc hendrerit eget.',
     'last_modified' => (new DateTime)->format('Y-m-d H:i:s')
 ]);
+
+if ($insert) {
+    echo "Record inserted into table.<br />";
+}
 
 // 2 - write a function to select and write every comment in the `comments` table into
 // a file called /tmp/comments.txt. Just the comments, each on a new line.
@@ -40,3 +48,5 @@ foreach ($comments as $comment) {
 
     $count++;
 }
+
+echo count($comments) . " comment(s) has been inserted the txt file.";
