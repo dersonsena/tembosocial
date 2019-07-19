@@ -65,32 +65,15 @@ figure {
   color: #fff;
   font-size: 0.75em;
   float: left;
-  background-color: #334d5c;
   position: relative;
   overflow: hidden;
   opacity: 1;
   transition: opacity, 0.3s ease;
   cursor: pointer;
+  border-right: 1px solid #fff;
 }
-.block:nth-of-type(2),
-.legend li:nth-of-type(2):before {
-  background-color: #45b29d;
-}
-.block:nth-of-type(3),
-.legend li:nth-of-type(3):before {
-  background-color: #efc94c;
-}
-.block:nth-of-type(4),
-.legend li:nth-of-type(4):before {
-  background-color: #e27a3f;
-}
-.block:nth-of-type(5),
-.legend li:nth-of-type(5):before {
-  background-color: #df5a49;
-}
-.block:nth-of-type(6),
-.legend li:nth-of-type(6):before {
-  background-color: #962d3e;
+.block:last-child {
+  border-right: none;
 }
 .block:hover {
   opacity: 0.65;

@@ -48,10 +48,10 @@ class App extends React.Component {
 
   renderChartData = data => {
     return data.map((percent, key) => {
-      const bgColor = this.colors[key].color;
+      const { description, color } = this.colors[key];
 
       return (
-        <span key={key} style={{ width: `${percent}%`, backgroundColor: bgColor }} className="block" title="Category A">
+        <span key={key} style={{ width: `${percent}%`, backgroundColor: color }} className="block" title={description}>
           <span className="value">{percent}%</span>
         </span>
       );
