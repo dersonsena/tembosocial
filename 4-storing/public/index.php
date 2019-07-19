@@ -1,5 +1,6 @@
 <?php
 use App\PDOConnection;
+use App\CommentsWriter;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -28,25 +29,14 @@ if ($insert) {
 // 2 - write a function to select and write every comment in the `comments` table into
 // a file called /tmp/comments.txt. Just the comments, each on a new line.
 
+$txtFile = __DIR__ . DS . '..' . DS . 'tmp' . DS . 'comments.txt';
 $comments = $connection->fetchAll("SELECT comment FROM `comments` ORDER BY `comment` ASC");
 
 $comments = array_map(function($row) {
     return $row['comment'];
 }, $comments);
 
-$count = 0;
-$sleepTime = 100;
-$file = __DIR__ . DS . '..' . DS . 'tmp' . DS . 'comments.txt';
-
-foreach ($comments as $comment) {
-    if ($count === $sleepTime) {
-        sleep(3);
-        $count = 0;
-    }
-
-    file_put_contents($file, $comment . PHP_EOL, FILE_APPEND);
-
-    $count++;
-}
+$commentsWriter = CommentsWriter::build($comments);
+$commentsWriter->writeInTxtFile($txtFile);
 
 echo count($comments) . " comment(s) has been inserted the txt file.";
