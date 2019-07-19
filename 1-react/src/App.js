@@ -50,6 +50,10 @@ class App extends React.Component {
     return data.map((percent, key) => {
       const { description, color } = this.colors[key];
 
+      if (percent === 0) {
+        return false;
+      }
+
       return (
         <span key={key} style={{ width: `${percent}%`, backgroundColor: color }} className="block" title={description}>
           <span className="value">{percent}%</span>
@@ -62,7 +66,7 @@ class App extends React.Component {
     return (
       <figure>
         <div className="y-axis">
-          <h3>Y-Axis Title</h3>
+          <h3>Y-Axis</h3>
         </div>
 
         <div className="graphic">
@@ -81,7 +85,7 @@ class App extends React.Component {
         </div>
 
         <div className="x-axis">
-          <h3>X-Axis Title</h3>
+          <h3>X-Axis</h3>
           <ul className="legend">
             {
               this.colors.map((color, key) =>
