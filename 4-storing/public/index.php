@@ -7,9 +7,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 define('DS', DIRECTORY_SEPARATOR);
 
 $connection = PDOConnection::build([
-    'dsn' => 'mysql:host=127.0.0.1;port=3333;dbname=despertar_quantico',
+    'dsn' => 'mysql:host=127.0.0.1;port=3306;dbname=your_database',
     'username' => 'root',
-    'password' => '123456'
+    'password' => 'secret'
 ]);
 
 if ($connection) {
