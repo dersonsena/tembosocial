@@ -2,14 +2,17 @@
 use App\PDOConnection;
 use App\CommentsWriter;
 
+set_time_limit(60);
+ini_set('memory_limit', '128M');
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
-define('DS', DIRECTORY_SEPARATOR);
+$startTime = microtime(true);
 
 $connection = PDOConnection::build([
-    'dsn' => 'mysql:host=127.0.0.1;port=3306;dbname=your_database',
-    'username' => 'root',
-    'password' => 'secret'
+    'dsn' => 'mysql:host='. DB_HOST .';port='. DB_PORT .';dbname=' . DB_DATABASE,
+    'username' => DB_USER,
+    'password' => DB_PASSWORD
 ]);
 
 if ($connection) {
@@ -28,15 +31,17 @@ if ($insert) {
 
 // 2 - write a function to select and write every comment in the `comments` table into
 // a file called /tmp/comments.txt. Just the comments, each on a new line.
-
-$txtFile = __DIR__ . DS . '..' . DS . 'tmp' . DS . 'comments.txt';
-$comments = $connection->fetchAll("SELECT comment FROM `comments` ORDER BY `comment` ASC");
+$comments = $connection->fetchAll("SELECT `comment` FROM `comments` ORDER BY `comment` ASC");
 
 $comments = array_map(function($row) {
     return $row['comment'];
 }, $comments);
 
 $commentsWriter = CommentsWriter::build($comments);
-$commentsWriter->writeInTxtFile($txtFile);
+//$commentsWriter->writeInTxtWithFileGetContents(TXT_TARGET_FILE);
+$commentsWriter->writeInTxtWithStream(TXT_TARGET_FILE); // More recommended
 
-echo count($comments) . " comment(s) has been inserted the txt file.";
+$endTime = microtime(true);
+$duration = $endTime - $startTime;
+
+echo count($comments) . " comment(s) has been inserted the txt file in {$duration} microseconds.";

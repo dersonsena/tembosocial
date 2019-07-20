@@ -47,7 +47,10 @@ CREATE TABLE `comments` (
     `comment_id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `comment` TEXT DEFAULT NULL,
     `last_modified` TIMESTAMP DEFAULT NULL
-)
+);
+
+CREATE INDEX `comments_comment_index` ON `comments`(`comment`(300));
+
 ```
 
 ### 3 - Start up the PHP Build-in Server

@@ -1,0 +1,18 @@
+======================================
+Using the file_put_contents directly
+======================================
+160308 comment(s) has been inserted the txt file in 34.799922943115 microseconds.
+160308 comment(s) has been inserted the txt file in 38.930933952332 microseconds.
+160308 comment(s) has been inserted the txt file in 36.645233869553 microseconds.
+160308 comment(s) has been inserted the txt file in 28.297842979431 microseconds.
+160308 comment(s) has been inserted the txt file in 24.51914191246 microseconds.
+
+
+======================================
+Using the stream strategy
+======================================
+160308 comment(s) has been inserted the txt file in 2.7534868717194 microseconds.
+160308 comment(s) has been inserted the txt file in 2.5136601924896 microseconds.
+160308 comment(s) has been inserted the txt file in 2.5519678592682 microseconds.
+160308 comment(s) has been inserted the txt file in 2.6354119777679 microseconds.
+160308 comment(s) has been inserted the txt file in 2.6394097805023 microseconds.

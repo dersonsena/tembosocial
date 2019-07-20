@@ -9,12 +9,7 @@ class CommentsWriter
      */
     private $comments = [];
 
-    /**
-     * @var string
-     */
-    private $txtFile;
-
-    private function __constructor(array $comments)
+    private function __construct(array $comments)
     {
         $this->comments = $comments;
     }
@@ -32,20 +27,34 @@ class CommentsWriter
      * @param string $txtFile
      * @return void
      */
-    public function writeInTxtFile(string $txtFile)
+    public function writeInTxtWithFileGetContents(string $txtFile)
     {
-        $count = 0;
-        $sleepTime = 100;
+        file_put_contents($txtFile, '');
 
         foreach ($this->comments as $comment) {
-            if ($count === $sleepTime) {
-                sleep(3);
-                $count = 0;
-            }
-
             file_put_contents($txtFile, $comment . PHP_EOL, FILE_APPEND);
-
-            $count++;
         }
+    }
+
+    /**
+     * @param string $txtFile
+     * @return void
+     */
+    public function writeInTxtWithStream(string $txtFile)
+    {
+        $handle = fopen($txtFile, 'w+');
+        $string = '';
+
+        foreach ($this->comments as $comment) {
+            $string .= $comment . PHP_EOL;
+        }
+        
+        $stream = fopen("php://memory", 'r+');
+        fwrite($stream, $string);
+        rewind($stream);
+        stream_copy_to_stream($stream, $handle);
+
+        fclose($handle);
+        fclose($stream);
     }
 }
