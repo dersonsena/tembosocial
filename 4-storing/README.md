@@ -29,18 +29,19 @@ composer install
 
 ### 2 - Setup the Database settings
 
-Go to script `public/index.php` on the line 8 and update the mysql database settings of according your enviroment.
+Go to script `config/config.php` and update the MySQL database settings of according your enviroment.
 
 ```php
 <?php
-$connection = PDOConnection::build([
-    'dsn' => 'mysql:host=127.0.0.1;port=3306;dbname=your_database_name',
-    'username' => 'root',
-    'password' => 'secret'
-]);
+
+define('DB_HOST', '127.0.0.1');
+define('DB_PORT', '3306');
+define('DB_USER', 'root');
+define('DB_PASSWORD', 'secret');
+define('DB_DATABASE', 'your_database_name');
 ```
 
-After this, create the `comments` table:
+After this, create the `comments` table and create a index in the `comment` column:
 
 ```sql
 CREATE TABLE `comments` (
@@ -64,3 +65,9 @@ php -S localhost:8000 -t public
 Open your favorite browser in the address `http://localhost:8000` and the output should be:
 
 ![Screenshot 1](/4-storing/assets/screen-2.png)
+
+## Benchmark
+
+In the class [`App\CommentsWriter`](https://github.com/dersonsena/tembosocial/blob/master/4-storing/src/CommentsWriter.php) have two methods, one using the `file_put_contents` directly and other using the "stream approach".
+
+See the file [benchmark.txt](https://github.com/dersonsena/tembosocial/blob/master/4-storing/benchmark.txt) for more benchmark details.
