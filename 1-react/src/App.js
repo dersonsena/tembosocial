@@ -14,6 +14,19 @@ class App extends React.Component {
 
   getBarMarginTop = key => key === 0 ? '20px' : ((key + 1) * 36) + 'px';
 
+  getMarginLeft = key => {
+    switch (key) {
+      case 0:
+        return '104px';
+      case 1:
+        return '160px';
+      case 2:
+        return '138px';
+      default:
+        return '100px';
+    }
+  };
+
   render() {
     return (
       <div className='row'>
@@ -31,6 +44,7 @@ class App extends React.Component {
                 <ChartBars
                   key={key}
                   colors={colors}
+                  marginLeft={this.getMarginLeft(key)}
                   marginTop={this.getBarMarginTop(key)}
                   data={data} />
               )}

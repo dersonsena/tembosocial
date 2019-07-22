@@ -84,13 +84,14 @@ ul.bars {
   position: absolute;
 }
 
-ul.bars:first-child {
-  margin-top: 10px;
-}
-
 ul.bars li {
   float: left;
   height: 15px;
+  border-right: 1px solid #fff;
+}
+
+ul.bars li:last-child {
+  border-right: none;
 }
 
 ul.legends {

@@ -3,7 +3,7 @@
  */
 export const dataChart = [
   {
-    prompt: "My issue was resolved in a timely manner",
+    prompt: "My issue was resolved in a timely manner, my experience in the past is that it was much longer",
     data: [1, 14, 24, 3, 4]
   },
   {
